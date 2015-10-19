@@ -28,7 +28,9 @@ The script requires several variables:
 
 Copy the script over to the host you wish to register and give it the correct permissions using chmod. 
 
-Next, Execute the script as root or using sudo. The server should now appear in the hosts within satellite if registration goes OK. 
+Next, Execute the script as root or using sudo. The server should now appear in the hosts within satellite if registration goes OK: 
+
+	./satellite6-register.sh "MyOrg" "satellite.domain.com" "rhel-7-server-rh-common-rpms" "RHEL7" "KT_MyOrg_Library_RHEL7_5"
 
 If you can't see the host, set the org to Any Organization and set the location to Any location and check the hosts again. 
 
@@ -38,3 +40,5 @@ You can also use the hammer API on the satellite server, which should also show 
                       hammer host list --org-id 1   
     
 # Known Issues:
+
+After registration sometimes the host ends up in the wrong org or environment and cannot be seen in foreman. 
