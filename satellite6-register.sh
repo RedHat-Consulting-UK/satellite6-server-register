@@ -59,8 +59,8 @@ echo """[main]
         environment = $puppetenv
         server = $satellitefqdn""" > /etc/puppet/puppet.conf
 
-# Run puppet
-puppet agent -tdv
+# Start & run puppet agent 
+puppet agent -v
 
 # Setup puppet to run on system reboot
 /sbin/chkconfig --level 345 puppet on
