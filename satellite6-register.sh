@@ -50,6 +50,7 @@ echo """[main]
         ssldir = \$vardir/ssl
 
         [agent]
+	waitforcert = 300
         pluginsync = true
         report = true
         ignoreschedules = true
@@ -59,12 +60,12 @@ echo """[main]
         environment = $puppetenv
         server = $satellitefqdn""" > /etc/puppet/puppet.conf
 
-# Start & run puppet agent 
-puppet agent -v
-
 # Setup puppet to run on system reboot
 /sbin/chkconfig --level 345 puppet on
+systemctl enable puppet 
 
-/usr/bin/puppet agent --config /etc/puppet/puppet.conf -o --tags no_such_tag --server $satellitefqdn --no-daemonize
+# Start the agent & run a test
+puppet agent
+puppet agent -tdv 
 
 sync
