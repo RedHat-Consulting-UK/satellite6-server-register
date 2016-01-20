@@ -27,7 +27,7 @@ puppetenv=$5
 # Install Katello
 rpm -ivh http://${satellitefqdn}/pub/katello-ca-consumer-latest.noarch.rpm
 subscription-manager register --force --org="$organization" --activationkey="$activationkey"
-subscription-manager repos --enable $repolist
+subscription-manager repos --enable=$repolist
 
 # Update packages on host
 yum -y update
