@@ -1,10 +1,20 @@
-# satellite6-server-register
+# satellite6-server-register: Simple Satellite 6 registration script which doesn't use the Satellite 6 API. 
+
+## Description: 
 
 Yet another Red Hat Satellite 6 (Sat 6) server registration script, tested with Satellite 6.1.X and higher, including 6.1 Beta.
 
 This script is used to register physical or virtual servers to satellite which have not been created through satellite. Machines which have been vMotioned or moved to different VMware clusters may also need re-registering.
 
 This script has been tested on the following operating systems: RHEL 6.6, RHEL 5.11, RHEL 7 and 7.1
+
+## Warning
+
+This script provides a simple example of how satellite 6 registration can be done but is not extensive. Satellite 6 now comes with a built-in script for performing host registration known as katello-client-bootstrap. For production environments the katello-bootstrap should be used and official support is provided by Red Hat for it. 
+
+To get the katello-client-bootstrap script (upstream release) see this repo: https://github.com/Katello/katello-client-bootstrap 
+
+## Using the script
 
 The script requires several variables:
 
@@ -24,7 +34,7 @@ The script requires several variables:
     - Puppet Environment Name: This is the name of the puppet environment you want your machine to use, these can be found via the satellite server by going to /etc/puppet/enviroment
                       Example: "KT_MyOrg_Library_RHEL7_5" or "KT_MyOrg_Library_RHEL6_5"
 
-# How to use the script:
+## How to use the script:
 
 Copy the script over to the host you wish to register and give it the correct permissions using chmod.
 
@@ -43,6 +53,6 @@ You can also use the hammer API on the satellite server, which should also show 
                       # Default Org
                       hammer host list --org-id 1   
 
-# Known Issues:
+## Known Issues:
 
 After registration sometimes the host ends up in the wrong org or environment and cannot be seen in foreman.
